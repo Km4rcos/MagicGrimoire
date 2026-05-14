@@ -1,6 +1,8 @@
-# 🔮 MagicGrimoireDB
+# 🔮 MagicGrimoire
 
 Um sistema web premium para gerenciamento de coleção e construção de decks de **Magic: The Gathering**. Construído com React, backend em Supabase e integrado à API oficial da Scryfall.
+
+# Acesse em: https://magic-grimoire.vercel.app/
 
 ## ✨ Funcionalidades
 
