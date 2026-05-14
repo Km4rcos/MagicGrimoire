@@ -28,7 +28,10 @@ const styles = {
     background:'var(--bg-card)', 
     borderBottom: '1px solid rgba(212, 175, 55, 0.1)',
     flexWrap:'wrap', 
-    gap:'1rem' 
+    gap:'1rem',
+    position: 'sticky',
+    top: 0,
+    zIndex: 1000
   },
   brand: { 
     fontSize:'1.4rem', 
