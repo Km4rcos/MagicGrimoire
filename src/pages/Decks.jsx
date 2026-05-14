@@ -141,7 +141,10 @@ export default function Decks({ session }) {
 
   const exportarParaTexto = () => {
     if (cartasNoDeck.length === 0) return
-    const textoFormatado = cartasNoDeck.map(c => `${c.quantidade_deck} ${c.printed_name || c.name}`).join('\n')
+    const textoFormatado = [...cartasNoDeck]
+      .sort((a, b) => (a.printed_name || a.name || '').localeCompare(b.printed_name || b.name || ''))
+      .map(c => `${c.quantidade_deck} ${c.printed_name || c.name}`)
+      .join('\n')
     navigator.clipboard.writeText(textoFormatado)
     setMsg('Lista copiada!')
     setTimeout(() => setMsg(''), 3000)
