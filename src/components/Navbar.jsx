@@ -8,7 +8,7 @@ export default function Navbar({ session }) {
 
   return (
     <nav style={styles.nav}>
-      <span style={styles.brand}>MagicGrimoireDB</span>
+      <span style={styles.brand}>MagicGrimoire</span>
       <div style={styles.links}>
         <Link to="/" style={styles.link}>Fichário</Link>
         <Link to="/busca" style={styles.link}>Adicionar Cartas</Link>
