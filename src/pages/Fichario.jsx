@@ -313,7 +313,7 @@ const styles = {
     fontFamily: 'var(--font-magic)', 
     background:'var(--bg-card)', 
     color:'var(--text-main)', 
-    border:'1px solid rgba(212, 175, 55, 0.3)', 
+    border:'1px solid rgba(255,255,255,0.05)', 
     borderRadius:'4px', cursor:'pointer', 
     fontSize:'1rem' 
   },
@@ -330,7 +330,7 @@ const styles = {
     fontFamily: 'var(--font-magic)', 
     fontSize: '1.1rem', 
     letterSpacing: '1px', 
-    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)', 
+    boxShadow: '0 4px 15px rgba(255,255,255,0.05)', 
     backdropFilter: 'blur(4px)' 
   },
   filterRow: { 
@@ -344,7 +344,7 @@ const styles = {
     minWidth:'180px', 
     padding:'0.75rem', 
     borderRadius:'4px', 
-    border:'1px solid rgba(255, 255, 255, 0.3)', 
+    border:'1px solid rgba(255,255,255,0.05)', 
     background:'var(--bg-card)', 
     color:'var(--text-main)', 
     fontSize:'1rem', 
@@ -355,7 +355,7 @@ const styles = {
     minWidth:'140px', 
     padding:'0.75rem', 
     borderRadius:'4px', 
-    border:'1px solid rgba(212, 175, 55, 0.3)', 
+    border:'1px solid rgba(255,255,255,0.05)', 
     background:'var(--bg-card)', 
     color:'var(--text-main)', 
     fontSize:'0.9rem', 
