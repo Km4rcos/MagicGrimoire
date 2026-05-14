@@ -28,7 +28,7 @@ export default function Login() {
       <div style={styles.card}>
         <div style={{ textAlign:'center' }}>
           <div style={{ fontSize:'2.5rem', marginBottom:'0.5rem' }}>✨</div>
-          <h1 style={styles.title}>MagicGrimoireDB</h1>
+          <h1 style={styles.title}>MagicGrimoire</h1>
         </div>
         <p style={styles.subtitle}>{modo === 'login' ? 'Entrar na conta' : 'Criar conta'}</p>
         <input style={styles.input} type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleSubmit()} />
