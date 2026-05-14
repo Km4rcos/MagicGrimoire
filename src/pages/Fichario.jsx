@@ -253,19 +253,136 @@ export default function Fichario({ session }) {
 }
 
 const styles = {
-  page: { padding:'2rem', background:'transparent', minHeight:'100vh' },
-  headerRow: { display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem', flexWrap:'wrap', gap:'1rem' },
-  title: { color:'var(--accent-gold)', margin:'0', fontSize:'1.8rem', fontFamily:'var(--font-magic)', letterSpacing:'1px', textShadow:'0 2px 4px rgba(0,0,0,0.5)', textTransform: 'uppercase' },
-  badge: { color:'var(--text-main)', background:'rgba(255,255,255,0.05)', padding:'0.4rem 0.8rem', borderRadius:'4px', border:'1px solid rgba(255,255,255,0.1)', fontFamily:'var(--font-sans)', fontSize:'0.9rem', letterSpacing:'0.5px' },
-  badgeValor: { color: '#10b981', fontWeight: 'bold', fontSize: '0.9rem', fontFamily: 'var(--font-sans)', background: 'rgba(16, 185, 129, 0.1)', padding: '0.4rem 0.8rem', borderRadius: '4px', border: '1px solid rgba(16, 185, 129, 0.3)', boxShadow: '0 2px 4px rgba(0,0,0,0.2)' },
-  btnExport: { padding:'0.6rem 1.2rem', background:'#4b5563', color:'#fff', border:'none', borderRadius:'4px', cursor:'pointer', fontWeight:'bold', fontFamily:'var(--font-magic)', letterSpacing:'1px', textTransform:'uppercase', fontSize:'0.85rem', transition:'all 0.2s' },
-  btnRecarregar: { padding:'0.6rem 0.8rem', fontFamily: 'var(--font-magic)', background:'var(--bg-card)', color:'var(--text-main)', border:'1px solid rgba(212, 175, 55, 0.3)', borderRadius:'4px', cursor:'pointer', fontSize:'1rem' },
-  alertaFixo: { position: 'fixed', top: '20px', right: '20px', background: 'rgba(13, 14, 21, 0.95)', color: 'var(--accent-gold)', border: '1px solid var(--accent-gold)', padding: '1rem 1.5rem', borderRadius: '4px', zIndex: 9999, fontFamily: 'var(--font-magic)', fontSize: '1.1rem', letterSpacing: '1px', boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)', backdropFilter: 'blur(4px)' },
-  filterRow: { display:'flex', gap:'0.8rem', marginBottom:'2rem', flexWrap:'wrap' },
-  inputBusca: { flex:2, minWidth:'180px', padding:'0.75rem', borderRadius:'4px', border:'1px solid rgba(212, 175, 55, 0.3)', background:'var(--bg-card)', color:'var(--text-main)', fontSize:'1rem', fontFamily:'var(--font-sans)' },
-  select: { flex:1, minWidth:'140px', padding:'0.75rem', borderRadius:'4px', border:'1px solid rgba(212, 175, 55, 0.3)', background:'var(--bg-card)', color:'var(--text-main)', fontSize:'0.9rem', cursor:'pointer', fontFamily:'var(--font-sans)' },
-  info: { color:'var(--accent-gold)', fontFamily:'var(--font-magic)', letterSpacing:'1px' },
-  grid: { display:'flex', flexWrap:'wrap', gap:'1rem' },
-  skeletonGrid: { display:'flex', flexWrap:'wrap', gap:'1rem' },
-  skeleton: { width:'180px', height:'320px', borderRadius:'10px', background:'linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)', backgroundSize:'400px 100%', animation:'shimmer 1.5s infinite' }
+  page: { 
+    padding:'2rem', 
+    background:'transparent', 
+    minHeight:'100vh' 
+  },
+  headerRow: { 
+    display:'flex', 
+    justifyContent:'space-between', 
+    alignItems:'center', 
+    marginBottom:'1.5rem', 
+    flexWrap:'wrap', 
+    gap:'1rem' 
+  },
+  title: { 
+    color:'var(--accent-gold)', 
+    margin:'0', fontSize:'1.8rem', 
+    fontFamily:'var(--font-magic)', 
+    letterSpacing:'1px', 
+    textShadow:'0 2px 4px rgba(0,0,0,0.5)', 
+    textTransform: 'uppercase' 
+  },
+  badge: { 
+    color:'var(--text-main)', 
+    background:'rgba(255,255,255,0.05)', 
+    padding:'0.4rem 0.8rem', 
+    borderRadius:'4px', 
+    border:'1px solid rgba(255,255,255,0.1)', 
+    fontFamily:'var(--font-sans)', 
+    fontSize:'0.9rem', 
+    letterSpacing:'0.5px' 
+  },
+  badgeValor: { 
+    color: '#10b981', 
+    fontWeight: 'bold', 
+    fontSize: '0.9rem', 
+    fontFamily: 'var(--font-sans)', 
+    background: 'rgba(16, 185, 129, 0.1)', 
+    padding: '0.4rem 0.8rem', 
+    borderRadius: '4px', 
+    border: '1px solid rgba(16, 185, 129, 0.3)', 
+    boxShadow: '0 2px 4px rgba(0,0,0,0.2)' 
+  },
+  btnExport: { 
+    padding:'0.6rem 1.2rem', 
+    background:'#4b5563', 
+    color:'#fff', border:'none', 
+    borderRadius:'4px', 
+    ursor:'pointer', 
+    fontWeight:'bold', 
+    fontFamily:'var(--font-magic)', 
+    letterSpacing:'1px', 
+    textTransform:'uppercase', 
+    fontSize:'0.85rem', 
+    transition:'all 0.2s' 
+  },
+  btnRecarregar: { 
+    padding:'0.6rem 0.8rem', 
+    fontFamily: 'var(--font-magic)', 
+    background:'var(--bg-card)', 
+    color:'var(--text-main)', 
+    border:'1px solid rgba(212, 175, 55, 0.3)', 
+    borderRadius:'4px', cursor:'pointer', 
+    fontSize:'1rem' 
+  },
+  alertaFixo: { 
+    position: 'fixed', 
+    top: '20px', 
+    right: '20px', 
+    background: 'rgba(13, 14, 21, 0.95)', 
+    color: 'var(--accent-gold)', 
+    border: '1px solid var(--accent-gold)', 
+    padding: '1rem 1.5rem', 
+    borderRadius: '4px', 
+    zIndex: 9999, 
+    fontFamily: 'var(--font-magic)', 
+    fontSize: '1.1rem', 
+    letterSpacing: '1px', 
+    boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)', 
+    backdropFilter: 'blur(4px)' 
+  },
+  filterRow: { 
+    display:'flex', 
+    gap:'0.8rem', 
+    marginBottom:'2rem', 
+    flexWrap:'wrap' 
+  },
+  inputBusca: { 
+    flex:2, 
+    minWidth:'180px', 
+    padding:'0.75rem', 
+    borderRadius:'4px', 
+    border:'1px solid rgba(255, 255, 255, 0.3)', 
+    background:'var(--bg-card)', 
+    color:'var(--text-main)', 
+    fontSize:'1rem', 
+    fontFamily:'var(--font-sans)' 
+  },
+  select: { 
+    flex:1, 
+    minWidth:'140px', 
+    padding:'0.75rem', 
+    borderRadius:'4px', 
+    border:'1px solid rgba(212, 175, 55, 0.3)', 
+    background:'var(--bg-card)', 
+    color:'var(--text-main)', 
+    fontSize:'0.9rem', 
+    cursor:'pointer', 
+    fontFamily:'var(--font-sans)' 
+  },
+  info: { 
+    color:'var(--accent-gold)', 
+    fontFamily:'var(--font-magic)', 
+    letterSpacing:'1px' 
+  },
+  grid: { 
+    display:'flex', 
+    flexWrap:'wrap', 
+    gap:'1rem' 
+  },
+  skeletonGrid: { 
+    display:'flex', 
+    flexWrap:'wrap', 
+    gap:'1rem' 
+  },
+  skeleton: { 
+    width:'180px', 
+    height:'320px', 
+    borderRadius:'10px', 
+    background:'linear-gradient(90deg, #1a1a2e 25%, #252540 50%, #1a1a2e 75%)', 
+    backgroundSize:'400px 100%', 
+    animation:'shimmer 1.5s infinite' 
+  }
 }
