@@ -30,7 +30,7 @@ Um sistema web premium para gerenciamento de coleção e construção de decks d
 
 1. Clone o repositório:
 ```bash
-git clone [https://github.com/SEU_USUARIO/magic-grimoire-db.git](https://github.com/SEU_USUARIO/magic-grimoire-db.git)
+git clone https://github.com/Km4rcos/MagicGrimoire.git
 ```
 2. Acesse a pasta do projeto:
 ```bash
