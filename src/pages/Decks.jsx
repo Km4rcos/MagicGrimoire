@@ -489,7 +489,9 @@ export default function Decks({ session }) {
           <div style={styles.grid}>{[...Array(6)].map((_, i) => <SkeletonCard key={i} />)}</div>
         ) : (
           <div style={styles.gridDeck}>
-            {cartasNoDeck.map(carta => (
+            {[...cartasNoDeck]
+              .sort((a, b) => (a.printed_name || a.name || '').localeCompare(b.printed_name || b.name || ''))
+              .map(carta => (
               <CardMagic key={carta.id} carta={carta} quantidade={carta.quantidade_deck} />
             ))}
           </div>
@@ -539,7 +541,7 @@ export default function Decks({ session }) {
       const matchColecao = filtroColecao ? c.set_name === filtroColecao : true
 
       return matchNome && matchCor && matchTipo && matchSubtipo && matchColecao
-    })
+    }).sort((a, b) => (a.printed_name || a.name || '').localeCompare(b.printed_name || b.name || ''))
     return (
       <div style={styles.page}>
         {msg && <div style={styles.alertaFixo}>{msg}</div>}
@@ -551,7 +553,9 @@ export default function Decks({ session }) {
           <div style={styles.grid}>{[...Array(4)].map((_, i) => <SkeletonCard key={i} />)}</div>
         ) : (
           <div style={styles.gridDeck}>
-            {cartasNoDeck.map(carta => (
+            {[...cartasNoDeck]
+              .sort((a, b) => (a.printed_name || a.name || '').localeCompare(b.printed_name || b.name || ''))
+              .map(carta => (
               <CardMagic
                 key={carta.id} carta={carta} quantidade={carta.quantidade_deck}
                 onAumentarQtd={() => adicionarAoDeck(carta)}
