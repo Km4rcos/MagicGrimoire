@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from '../supabaseClient'
 import CardMagic from '../components/CardMagic'
 import IdentidadeCores from '../components/IdentidadeCores'
+import { useLocation } from 'react-router-dom'
 
 const enriquecerCartasEmLote = async (itensSupabase) => {
   if (!itensSupabase || itensSupabase.length === 0) return []
@@ -80,6 +81,20 @@ export default function Decks({ session }) {
   const [maoInicial, setMaoInicial] = useState([])
   const [modalMaoAberta, setModalMaoAberta] = useState(false)
 
+  const location = useLocation()
+
+  useEffect(() => {
+    setTela('lista')
+    setDeckSelecionado(null)
+    setCartasNoDeck([])
+    setInventario([])
+    setMsg('')
+    setEditandoNome(false)
+    setModalMaoAberta(false)
+    setMaoInicial([])
+  }, [location.pathname])
+
+
   const LIMITE_DECK = deckSelecionado?.modo === 'commander' ? 100 : 60
   const MAX_COPIAS = deckSelecionado?.modo === 'commander' ? 1 : 4
 
@@ -145,8 +160,15 @@ export default function Decks({ session }) {
   }
 
   const voltar = () => {
-    setTela('lista'); setDeckSelecionado(null); setCartasNoDeck([])
-    setInventario([]); setMsg(''); setEditandoNome(false)
+    setTela('lista')
+    setDeckSelecionado(null)
+    setCartasNoDeck([])
+    setInventario([])
+    setMsg('')
+    setEditandoNome(false)
+    setModalMaoAberta(false) 
+    setMaoInicial([])
+  
     carregarDecks()
   }
 
