@@ -76,6 +76,9 @@ export default function Decks({ session }) {
   const [loading, setLoading] = useState(false)
   const [buscaNome, setBuscaNome] = useState('')
   const [filtroCor, setFiltroCor] = useState('')
+  const [filtroTipo, setFiltroTipo] = useState('')
+  const [filtroSubtipo, setFiltroSubtipo] = useState('')
+  const [filtroColecao, setFiltroColecao] = useState('')
   const [editandoNome, setEditandoNome] = useState(false)
   const [novoNome, setNovoNome] = useState('')
   const [maoInicial, setMaoInicial] = useState([])
@@ -155,7 +158,7 @@ export default function Decks({ session }) {
     setDeckSelecionado(deck)
     setNovoNome(deck.nome)
     setTela('editar')
-    setBuscaNome(''); setFiltroCor('')
+    setBuscaNome(''); setFiltroCor(''); setFiltroTipo(''); setFiltroSubtipo(''); setFiltroColecao('');
     await carregarEditor(deck.id)
   }
 
@@ -513,13 +516,30 @@ export default function Decks({ session }) {
   }
 
   if (tela === 'editar' && deckSelecionado) {
+    const colecoesUnicas = [...new Set(inventario.map(c => c.set_name).filter(Boolean))].sort()
+    
+    const tribosSet = new Set()
+    inventario.forEach(carta => {
+      const typeLine = carta.type_line || ''
+      if (typeLine.includes('—')) {
+        typeLine.split('—')[1].trim().split(' ').forEach(sub => { if (sub) tribosSet.add(sub) })
+      }
+    })
+    const tribosUnicas = [...tribosSet].sort()
+
     const invFiltrado = inventario.filter(c => {
       const matchNome = c.name?.toLowerCase().includes(buscaNome.toLowerCase()) ||
                         c.printed_name?.toLowerCase().includes(buscaNome.toLowerCase())
+      
       const matchCor = filtroCor ? (c.colors || ['C']).includes(filtroCor) : true
-      return matchNome && matchCor
-    })
+      
+      const typeLineOriginal = c.type_line || ''
+      const matchTipo = filtroTipo ? typeLineOriginal.toLowerCase().includes(filtroTipo.toLowerCase()) : true
+      const matchSubtipo = filtroSubtipo ? typeLineOriginal.includes(filtroSubtipo) : true
+      const matchColecao = filtroColecao ? c.set_name === filtroColecao : true
 
+      return matchNome && matchCor && matchTipo && matchSubtipo && matchColecao
+    })
     return (
       <div style={styles.page}>
         {msg && <div style={styles.alertaFixo}>{msg}</div>}
@@ -553,6 +573,25 @@ export default function Decks({ session }) {
             <option value="R">Vermelho (R)</option>
             <option value="G">Verde (G)</option>
             <option value="C">Incolor</option>
+          </select>
+          
+          <select style={styles.select} value={filtroTipo} onChange={e => setFiltroTipo(e.target.value)}>
+            <option value="">Todos os Tipos</option>
+            <option value="creature">Criatura</option>
+            <option value="instant">Mágica Instantânea</option>
+            <option value="sorcery">Feitiço</option>
+            <option value="artifact">Artefato</option>
+            <option value="enchantment">Encantamento</option>
+            <option value="planeswalker">Planeswalker</option>
+            <option value="land">Terreno</option>
+          </select>
+          <select style={styles.select} value={filtroSubtipo} onChange={e => setFiltroSubtipo(e.target.value)}>
+            <option value="">Todas as Tribos</option>
+            {tribosUnicas.map(tribo => <option key={tribo} value={tribo}>{tribo}</option>)}
+          </select>
+          <select style={styles.select} value={filtroColecao} onChange={e => setFiltroColecao(e.target.value)}>
+            <option value="">Todas as Coleções</option>
+            {colecoesUnicas.map(colecao => <option key={colecao} value={colecao}>{colecao}</option>)}
           </select>
         </div>
         <div style={styles.grid}>
